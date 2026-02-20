@@ -74,12 +74,6 @@ void main() {
         print('Inventory is empty.');
         continue;
       }
-
-      for (var product in inventory) {
-        print(
-            '${product.product.padRight(20)} ${product.price.toStringAsFixed(2).padRight(10)} ${product.quantity}');
-      }
-      
     } else if (choice == 3) {
       stdout.write('Enter Product Name to Sell: ');
       String? p = stdin.readLineSync();
@@ -89,7 +83,7 @@ void main() {
       }
       String productName = p.trim();
 
-      stdout.write('Enter Quantity to Sell: ');
+      stdout.write('Enter Quantity: ');
       String? quantityInput = stdin.readLineSync();
       int sellQty = int.tryParse(quantityInput ?? '') ?? 0;
       if (sellQty <= 0) {
