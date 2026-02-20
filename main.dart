@@ -22,14 +22,14 @@ void main() {
     print('4. Exit');
 
     stdout.write('Enter Choice: ');
-    String? input = stdin.readLineSync();
+    String? i = stdin.readLineSync();
 
     if (i == null || i.isEmpty) {
       print('Please Input choice 1-4');
       continue;
     }
 
-    int choice = int.tryParse(input) ?? 0;
+    int choice = int.tryParse(i) ?? 0;
 
     if (choice == 1) {
       stdout.write('Enter Product Name: ');
@@ -57,34 +57,30 @@ void main() {
 
       bool productExists = false;
       for (var product in inventory) {
-        if (product.product.toLowerCase() == productName.toLowerCase()) {
+        if (product.product.toLowerCase() == p.toLowerCase()) {
           product.quantity += quantity;
           print(
-              'Product "$productName" exists. Quantity updated to ${product.quantity}.');
+              'Product "$p" exists. Quantity updated to ${product.quantity}.');
           productExists = true;
           break;
         }
       }
       if (!productExists) {
-        inventory.add(Store(productName, price, quantity));
+        inventory.add(Store(p, price, quantity));
         print('Product added successfully.');
       }
     } else if (choice == 2) {
-      // View products
-      if (inventory.isEmpty) {
+       if (inventory.isEmpty) {
         print('Inventory is empty.');
         continue;
       }
-      print('\nInventory System');
-      print('${'Product'.padRight(20)} ${'Price'.padRight(10)} Quantity');
-      print('-------------------- ---------- --------');
+
       for (var product in inventory) {
         print(
             '${product.product.padRight(20)} ${product.price.toStringAsFixed(2).padRight(10)} ${product.quantity}');
       }
-      print('-------------------- ---------- --------');
+      
     } else if (choice == 3) {
-      // Sell product
       stdout.write('Enter Product Name to Sell: ');
       String? p = stdin.readLineSync();
       if (p == null || p.trim().isEmpty) {
